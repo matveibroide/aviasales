@@ -1,0 +1,44 @@
+@import '../../styles/variables';
+
+.tickets-filter-price {
+    
+    
+    border-radius: 8px;
+    width: 100%;
+    height: 50px;
+    background-color: $bg-comps;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    
+}
+
+.tickets-filter-price-btn {
+    border: 2px solid $bg-border;
+    color: $font-color-main;
+    background-color: transparent;
+    border-radius: 0;
+    
+}
+
+.tickets-filter-price :nth-child(2n) {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+}
+
+.tickets-filter-price :first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.tickets-filter-price :last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.tickets-filter-price-btn_active {
+    border: none;
+    color: white;
+    background-color: $btn-active;
+}
+

@@ -1,0 +1,65 @@
+@import '../../styles/variables';
+
+.tickets-transfer-filter {
+    height: 252px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    background-color: $bg-comps;
+    width: 17%;
+    border: 2px solid $bg-border;
+}
+
+.tickets-transfer-filter__inner-wrapper {
+    height: 100%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 10%;
+    justify-content: space-around;
+
+    span {
+        width: fit-content;
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .custom-checkbox {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+      }
+
+      .custom-checkbox+label {
+        display: inline-flex;
+        align-items: center;
+        user-select: none;
+      }
+      .custom-checkbox+label::before {
+        content: '';
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        flex-shrink: 0;
+        flex-grow: 0;
+        border: 1px solid #9ABBCE;
+        border-radius: 2px;
+        margin-right: 0.5em;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 50% 50%;
+      }
+
+      .custom-checkbox:checked+label::before {
+        border-color: #2196F3;
+        
+        background-image: url('../../assets/Shape.png');
+        }
+}
+
+@media(max-width:921px) {
+  .tickets-transfer-filter {
+      width: 60%;
+  }
+}
