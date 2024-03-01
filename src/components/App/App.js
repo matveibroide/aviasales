@@ -1,14 +1,20 @@
 import "./App.scss";
 import Header from "../Header/Header";
 import AppContainer from "../AppContainer/AppContainer";
-import TicketsContainer from "../TicketsContainer/TicketsContainer";
+import store from "../store/store";
+import { Provider } from "react-redux";
+
+
+
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <AppContainer />
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <Header />
+        <AppContainer />
+      </div>
+    </Provider>
   );
 }
 

@@ -4,9 +4,9 @@ const TicketsContainer = () => {
   const arr = [...Array(5)];
   return (
     <ul className="tickets-container">
-      {arr.map((el) => {
+      {arr.map((el,i) => {
         return (
-          <li className="ticket-card-container">
+          <li key = {i} className="ticket-card-container">
             <TicketCard />
           </li>
         );
