@@ -38,8 +38,6 @@ export const filterSlice = createSlice({
         const { oneTransfer, twoTransfers, threeTransfers, noTransfers } =
           state.value;
 
-        console.log(oneTransfer, twoTransfers, threeTransfers, noTransfers);
-
         if (!oneTransfer || !twoTransfers || !threeTransfers || !noTransfers) {
           return false;
         }
@@ -49,34 +47,18 @@ export const filterSlice = createSlice({
         }
       };
 
-     /*  switch (action.payload) {
-        case "oneTransfer":
-          state.value = {
-            ...state.value,
-            oneTransfer: !state.value.oneTransfer,
-          };
-
-          state.value = {
-            ...state.value,
-            all: setVal(state),
-          };
-          break;
-        default:
-          return state.value;
-      } */
-
       const updateProp = (payload) => {
         state.value = {
-            ...state.value,
-            [payload]:!state.value[payload]
-        }
+          ...state.value,
+          [payload]: !state.value[payload],
+        };
         state.value = {
-            ...state.value,
-            all: setVal(state),
-          };
-      }
+          ...state.value,
+          all: setVal(state),
+        };
+      };
 
-      updateProp(action.payload)
+      updateProp(action.payload);
     },
   },
 });
