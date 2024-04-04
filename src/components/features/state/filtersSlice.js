@@ -4,11 +4,11 @@ export const filterSlice = createSlice({
   name: "filters",
   initialState: {
     value: {
-      all: false,
-      noTransfers: false,
-      oneTransfer: false,
-      twoTransfers: false,
-      threeTransfers: false,
+      all: true,
+      noTransfers: true,
+      oneTransfer: true,
+      twoTransfers: true,
+      threeTransfers: true,
     },
   },
   reducers: {

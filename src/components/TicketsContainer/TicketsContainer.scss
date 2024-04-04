@@ -6,7 +6,7 @@
     width: 100%;
     padding: 0;
     display: grid;
-    gap: 3%;
+    gap: 40px;
     
     .ticket-card-container {
         
@@ -15,5 +15,14 @@
         background-color: $bg-comps;
         height: 184px;
         box-shadow: 5px 0px 15px 0px rgba(0, 0, 0, 0.1);
+    }
+
+    .load-tickets {
+        border: 2px solid $bg-border;
+        font-weight: 700; 
+        color: $btn-active;
+        background-color: white;
+        border-radius: 8px;
+        height: 30px;
     }
 }

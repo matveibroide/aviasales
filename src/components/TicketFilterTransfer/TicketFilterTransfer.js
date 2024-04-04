@@ -1,6 +1,6 @@
 import "./TicketFilterTransfer.scss";
 import { useSelector, useDispatch } from "react-redux";
-import { allActive, oneActive } from "../features/state/state";
+import { allActive, oneActive } from "../features/state/filtersSlice";
 
 const TicketFilterTransfer = () => {
   const filters = useSelector((state) => state.filters.value);
