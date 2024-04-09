@@ -4,7 +4,7 @@ import { setSearchId, setTickets } from "../features/state/ticketsSlice";
 import { getTickets, getSearchId } from "../features/state/ticketsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { Spin } from "antd";
+import { Spin, Alert } from "antd";
 const TicketsContainer = () => {
   const tickets = useSelector((state) => state.tickets.tickets);
   const searchId = useSelector((state) => state.tickets.searchId);
@@ -131,8 +131,20 @@ const TicketsContainer = () => {
 
   return (
     <ul className="tickets-container">
+      {filtersArray.length === 0 &&
+      !filterPrice &&
+      !filterSpeed &&
+      !isLoading ? (
+        <Alert
+          style={{ fontSize: "16px", width: "70%", margin: "0 auto" }}
+          message="Рейсов, подходящих под заданные фильтры, не найдено"
+        />
+      ) : null}
       {isLoading ? <Spin /> : ticketsToShow}
-      {isLoading || filteredTickets.length === 0 || filterPrice || filterSpeed ? null : (
+      {isLoading ||
+      filteredTickets.length === 0 ||
+      filterPrice ||
+      filterSpeed ? null : (
         <button className="load-tickets" onClick={onClickLoadTickets}>
           ПОКАЗАТЬ ЕЩЕ 10 БИЛЕТОВ
         </button>
