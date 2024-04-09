@@ -10,14 +10,17 @@ const TicketsContainer = () => {
   const searchId = useSelector((state) => state.tickets.searchId);
   const dispatch = useDispatch();
   const filters = useSelector((state) => state.filters.value);
-  console.log(filters);
+  const { filterSpeed, filterPrice } = useSelector(
+    (state) => state.filters.value2
+  );
+
   const filtersArray = [];
   for (let key in filters) {
     if (filters[key]) {
       filtersArray.push(key);
     }
   }
-  console.log(filtersArray);
+
   const [isError, setIsError] = useState(false);
   const [data, setData] = useState([]);
   const [offset, setOffset] = useState(10);
@@ -40,7 +43,6 @@ const TicketsContainer = () => {
       let stop = data !== undefined ? data.stop : false;
 
       if (stop) {
-        console.log(stop);
         setIsError(false);
         setIsLoading(false);
         break;
@@ -94,23 +96,45 @@ const TicketsContainer = () => {
 
   const all = data.filter((ticket) => filtersArray.includes("all"));
 
-  let filteredTickets = [...one, ...two, ...three, ...all, ...noTrans];
+  let filteredTickets = [...one, ...two, ...three, ...all, ...noTrans].slice(
+    0,
+    offset
+  );
+
+  if (filterPrice) {
+    let cheap = data.reduce((acc, n) => {
+      return acc.price < n.price ? acc : n;
+    });
+
+    filteredTickets.push(cheap);
+  }
+
+  if (filterSpeed) {
+    let fast = data.reduce((acc, n) => {
+      return acc.duration < n.duration ? acc : n;
+    });
+
+    filteredTickets.push(fast);
+  }
+
+
+  
+
+  //--------------------------------Decide what content to show user-----------------------------------------------//
+
+  const ticketsToShow = filteredTickets.map((el, i) => {
+    const { price, segments } = el;
+
+    return (
+      <li key={i} className="ticket-card-container">
+        <TicketCard price={price} segments={segments} />
+      </li>
+    );
+  });
 
   return (
     <ul className="tickets-container">
-      {isLoading ? (
-        <Spin />
-      ) : (
-        filteredTickets.slice(0, offset).map((el, i) => {
-          const { price, segments } = el;
-          console.log(segments);
-          return (
-            <li key={i} className="ticket-card-container">
-              <TicketCard price={price} segments={segments} />
-            </li>
-          );
-        })
-      )}
+      {isLoading ? <Spin /> : ticketsToShow}
       {isLoading || filteredTickets.length === 0 ? null : (
         <button className="load-tickets" onClick={onClickLoadTickets}>
           ПОКАЗАТЬ ЕЩЕ 10 БИЛЕТОВ

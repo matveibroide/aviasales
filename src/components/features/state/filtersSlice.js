@@ -10,6 +10,10 @@ export const filterSlice = createSlice({
       twoTransfers: true,
       threeTransfers: true,
     },
+    value2: {
+      filterPrice: false,
+      filterSpeed: false,
+    },
   },
   reducers: {
     allActive: (state, action) => {
@@ -21,6 +25,11 @@ export const filterSlice = createSlice({
           oneTransfer: true,
           twoTransfers: true,
           threeTransfers: true,
+        };
+
+        state.value2 = {
+          filterSpeed: false,
+          filterPrice: false,
         };
       } else {
         state.value = {
@@ -34,6 +43,10 @@ export const filterSlice = createSlice({
       }
     },
     oneActive: (state, action) => {
+      state.value2 = {
+        filterSpeed: false,
+        filterPrice: false,
+      };
       const setVal = (state) => {
         const { oneTransfer, twoTransfers, threeTransfers, noTransfers } =
           state.value;
@@ -60,10 +73,35 @@ export const filterSlice = createSlice({
 
       updateProp(action.payload);
     },
+    changeSpeedFilter: (state, action) => {
+      state.value = {
+        ...state.value,
+        all: false,
+        noTransfers: false,
+        oneTransfer: false,
+        twoTransfers: false,
+        threeTransfers: false,
+      };
+      state.value2.filterSpeed = !state.value2.filterSpeed;
+      console.log(state.value2.filterSpeed);
+    },
+    changePriceFilter: (state, action) => {
+      state.value = {
+        ...state.value,
+        all: false,
+        noTransfers: false,
+        oneTransfer: false,
+        twoTransfers: false,
+        threeTransfers: false,
+      };
+      state.value2.filterPrice = !state.value2.filterPrice;
+      console.log(state.value2.filterPrice);
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { allActive, oneActive } = filterSlice.actions;
+export const { allActive, oneActive, changeSpeedFilter, changePriceFilter } =
+  filterSlice.actions;
 
 export default filterSlice.reducer;

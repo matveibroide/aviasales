@@ -2,7 +2,6 @@ import companyLogo from "../../assets/slogo.png";
 import "./TicketCard.scss";
 
 const TicketCard = ({ price, segments }) => {
-  console.log(segments);
   const addMinutesToTime = (dateString, duration) => {
     const time = +duration; // Ensure duration is parsed to a float
 
@@ -22,7 +21,7 @@ const TicketCard = ({ price, segments }) => {
     const formattedTime =
       ("0" + hours).slice(-2) + ":" + ("0" + minutes).slice(-2);
 
-      return formattedTime
+    return formattedTime;
   };
 
   const minutesToHours = (minutes) =>
@@ -45,8 +44,6 @@ const TicketCard = ({ price, segments }) => {
   const { duration: durationST } = segments[1];
   const transfersAmountFirst = stopsFirstTicket.length;
   const transfersAmountSecond = stopsSecondTicket.length;
-
-  console.log(durationFT);
 
   return (
     <ul className="ticket-card">
@@ -72,7 +69,10 @@ const TicketCard = ({ price, segments }) => {
         </ul>
       </li>
       <li className="ticket-card__item">
-        <span> {convertDateToTime(dateST)} –{addMinutesToTime(dateST, durationST)}</span>
+        <span>
+          {" "}
+          {convertDateToTime(dateST)} –{addMinutesToTime(dateST, durationST)}
+        </span>
         <span>{minutesToHours(durationST)}</span>
         <ul>
           <li>{`${stopsSecondTicket.length} пересадка`}</li>
