@@ -117,9 +117,6 @@ const TicketsContainer = () => {
     filteredTickets.push(fast);
   }
 
-
-  
-
   //--------------------------------Decide what content to show user-----------------------------------------------//
 
   const ticketsToShow = filteredTickets.map((el, i) => {
@@ -135,7 +132,7 @@ const TicketsContainer = () => {
   return (
     <ul className="tickets-container">
       {isLoading ? <Spin /> : ticketsToShow}
-      {isLoading || filteredTickets.length === 0 ? null : (
+      {isLoading || filteredTickets.length === 0 || filterPrice || filterSpeed ? null : (
         <button className="load-tickets" onClick={onClickLoadTickets}>
           ПОКАЗАТЬ ЕЩЕ 10 БИЛЕТОВ
         </button>
